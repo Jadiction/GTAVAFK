@@ -3,11 +3,9 @@
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 #MaxThreadsPerHotkey, 2
-
 $F10::
 holdW := !holdW
 if(holdW == 1) {
-;	TrayTip, GTA AFK Script, Turned ON`n`nPress F10 to turn off., 2, 17
 	Send {w down}
 	ToolTip, GTA script is holding down W., 0, 0, 1
 	Loop {
@@ -33,16 +31,3 @@ stopScript(msg) {
 	TrayTip, GTA AFK Script, %msg%, 2, 17
 	Send {w up}
 }
-
-/*
-SetTitleMatchMode, 2
-$F10::
-;WinGetTitle, AW, A
-;ToolTip, Test: [%AW%], 0, 0, 1
-
-gta_hwnd := WinExist("Grand Theft Auto V")
-ControlSend, , {w down},ahk_id %gta_hwnd% 
-ControlSend, , {w down},Grand Theft Auto V
-ControlSend, , {w down},ahk_class grcWindow
-ControlSend, , {w down}, Untitled - Notepad
-*/
