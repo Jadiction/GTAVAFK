@@ -11,24 +11,31 @@ $F10::
 			Send {w down}
 			ToolTip, GTA script is holding down W., 0, 0, 1
 			Loop {
-				GetKeyState, wPressed, w
-				if(wPressed == "U") {
-					IfWinActive, Grand Theft Auto V
-					{
-						stopScript("Turned OFF due to pressing ""W"" in game.`n`nPress F10 to turn back on.")
-						holdW = 0
-						break
-					}
+				IfWinNotActive, Grand Theft Auto V
+				{
+					stopScript("GTA Script Turned OFF due to interrupting the macro in game.`nPress F10 to turn back on.")
+					holdW = 0
+					break
+				} else if GetKeyState("w","P") {
+					stopScript("GTA Script Turned OFF due to interrupting the macro in game by pressing ""W"".`nPress F10 to turn back on.")
+					holdW = 0
+					break
 				}
 			}
 		} else {
-			stopScript("Turned OFF`n`nPress F10 to turn back on.")
+			stopScript("GTA Script Turned OFF`nPress F10 to turn back on.")
 			holdW = 0
 		}
 	}
 Return
+
 stopScript(msg) {
-	ToolTip
-	TrayTip, GTA AFK Script, %msg%, 2, 17
+	ToolTip, , , 1
+	ToolTip, %msg%, 0, 25, 2
+	SetTimer, RemoveToolTip, -2000
 	Send {w up}
 }
+
+RemoveToolTip:
+	ToolTip, , , , 2
+Return
