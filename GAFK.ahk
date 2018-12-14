@@ -23,7 +23,7 @@ $F10::
 				}
 			}
 		} else {
-			stopScript("[GTA Script] - Turned OFF`nPress F10 to turn back on.")
+			stopScript("[GTA Script] - Turned OFF.`nPress F10 to turn back on.")
 			holdW = 0
 		}
 	}
