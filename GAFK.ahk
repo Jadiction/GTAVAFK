@@ -16,18 +16,26 @@ $F10::
 			{
 				if (!WinActive("Grand Theft Auto V") || GetKeyState("w","P"))
 				{
-					
-					reload()
+					Sleep, 1000
+					holdW = 0
+					stopScript("GTA Script Turned OFF due to interrupting the macro in game.`nPress F10 to turn back on.")
+					break
 				}
 			}
 		} else {
-			reload()
+			holdW = 0
+			stopScript("GTA Script Turned OFF.`nPress F10 to turn back on.")
 		}
 	}
 return
 
-reload() {
+stopScript(msg) {
 	Send {w up}
-	Sleep, 100
-	Reload
+	ToolTip, , , 1
+	ToolTip, %msg%, 0, 25, 2
+	SetTimer, RemoveToolTip, -2000
 }
+
+RemoveToolTip:
+	ToolTip, , , , 2
+Return
